@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter</title>
+    <link rel="stylesheet" href="static/all.min.css">
+    <link rel="stylesheet" href="static/style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <style>
+
+
+    .bb{
+    background-image: url("{{ url_for('static', filename='three_boxes_bg.jpeg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+		position: fixed;
+		width:200px;
+		height:50px;
+			bottom: 20px;
+			right: 20px;
+			font-size:20px;
+
+		}
+    .two{
+
+  display: flex;
+  flex-direction: column;
+
+    }
+
+
+    .feedback-container {
+
+  background-image: url("{{ url_for('static', filename='three_boxes_bg.jpeg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: cyan;
+}
+
+.feedback-textarea {
+
+  background-image: url("{{ url_for('static', filename='three_boxes_bg.jpeg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  color: black;
+}
+
+.submit-button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+
+    .about_company {
+
+  background-image: url("{{ url_for('static', filename='three_boxes_bg.jpeg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+  background-color: black;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.company {
+
+  color: black;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #00ff00;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ff00;
+  }
+  100% {
+    text-shadow: 0 0 5px #00ff00;
+  }
+}
+
+
+.message {
+ border: 1px solid black;
+    background-color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+ border-radius: 8px;
+  color: #ffa502;
+  font-size: 16px;
+  line-height: 1.5;
+  animation: glow 2s infinite;
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.message:hover {
+  text-shadow: 0 0 20px cyan;
+}
+
+
+
+
+  .containerr, .body1 {
+
+  background-image: url("{{ url_for('static', filename='three_boxes_bg.jpeg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+
+  }
+    .header{
+    background-image: url("{{ url_for('static', filename='three_boxes_bg.jpeg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+			margin: 0;
+    }
+    #no{
+    text-decoration:none;
+
+    }
+
+
+.message h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.message p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+        .scroll-box {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+marquee {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.product{
+ background-image: url("{{ url_for('static', filename='best.jpeg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+}
+
+    </style>
+</head>
+<body>
+
+   <div class="header">
+            <h1>ABC Newsletter</h1>
+        <marquee direction="left" scrollamount="5">
+Inside ABC : Get the Scoop on Our Latest News and Updates
+    </marquee>
+
+        <br><br><br><br><br>
+
+
+        </div>
+<!-- <div class="scroll-box">-->
+<!--    <marquee direction="left" scrollamount="5">-->
+<!--        This is a scrolling text animation!-->
+<!--    </marquee>-->
+<!--</div>-->
+<div class="body1">
+    <div class="container">
+
+
+
+        <div class="news">
+
+            <div class="product">
+                <div class="image">
+                    <img src="static/new product.jpg" style="width:150px; height:150px;" alt="">
+                </div>
+                <div class="namePrice">
+                    <h3>New Products</h3>
+<!--                    <span>Coming soon....</span>-->
+                </div>
+                <ol>
+
+{% for prod in new_products %}
+    <div class="message-box">
+  <p class="message"> {{prod}}</p>
+</div>
+    {% endfor %}
+
+                </ol>
+                <br>
+                <div class="bay">
+                    <form action="/product" method="post">
+                    <button> More info </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="image">
+                    <img src="static/R.jpeg" alt="" ><br>
+                </div>
+                <div class="namePrice">
+                    <h3>Customer Stories</h3>
+
+
+                </div>
+
+<!--                <ol>-->
+<!--{% for review in reviews %}-->
+<!--    <div class="message-box">-->
+<!--  <p class="message"> {{review}}</p>-->
+<!--</div><br>-->
+<!--    {% endfor %}-->
+
+
+
+
+<!--                </ol><br>-->
+
+                <div class="bay">
+                    <form action="/reviews" method="post">
+                        <button> <strong>"Hear What Our Customers Are Saying!"</strong> </button></form>
+                </div>
+            </div>
+
+
+
+             <div class="product">
+                <div class="image">
+                    <img src="static/new employee.jpg" style="width:150px;height:150px;"><br><br>
+                </div>
+                <div class="namePrice">
+                    <h3>Job openings</h3><br><br>
+
+
+                </div>
+
+                {% for job in job_openings %}
+
+
+    <div class="message-box">
+  <p class="message"> {{job}}</p>
+</div>
+    {% endfor %}
+
+
+
+                <br>
+
+
+                <div class="bay">
+                    <form action="/apply" method="post">
+                        <button > Apply</button></form>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="image">
+                    <img src="static/best employee.jpg" style="width:150px; height:150px;" alt="">
+                </div>
+                <div class="namePrice">
+                    <h3>Top performer</h3><br><br>
+
+                </div>
+                <ol>
+<div class="message-box">
+    {% if top_performer|length !=0  %}
+  <p class="message"> {{top_performer}}</p>
+
+</div>
+{%  endif %}
+
+
+                </ol>
+
+            </div>
+        </div>
+    </div>
+
+
+<!--   -->
+<!--<div id="cen">-->
+<!--<ul>-->
+<!--         <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></li>-->
+<!--         <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></li>-->
+<!--         <li><a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></li>-->
+
+<!--      </ul>-->
+<!--</div>-->
+
+<br><br><br>
+
+</div>
+<div class="containerr">
+  <div class="card">
+
+    <div class="content" id="no"><br>
+        <img src="static/manager.jpg" width="150px" height="150px">
+<p style="color:cyan;font-size:20px;">"The Manager's Corner"</p><br><br><br>
+<div class="message-box">
+  <p class="message">{{manager_message}}</p>
+</div>
+
+    </div>
+  </div>
+    <div class="card">
+
+    <div class="content">
+        <br>
+        <img src="static/best team.jpg" width="200px" height="200px">
+<div class="message-box">
+  <p class="message">{{best_team}}</p>
+</div>
+    </div>
+  </div>
+    <div class="card">
+
+    <div class="content">
+<br>
+
+<img src="static/blogs.jpg" width="200px" height="200px">
+<ol>
+
+
+        {% for blog in blogs %}
+    <div class="message-box">
+        <li> <p class="message">{{blog}}</p></li>
+</div>
+    {% endfor %}
+</ol>
+    </div>
+  </div>
+
+
+    <br><br><br><br>
+<div class="two">
+    <div class="about_company">
+  <p class="company"><strong>
+      <div class="namePrice" style="text-align:center;">
+                    <h3 style="color:black">About Us</h3><br><br>
+
+          <strong>{{about}}</strong>
+                </div>
+
+  </p></strong>
+</div>
+<br><br>
+
+<div class="feedback-container">
+  <h2 style="color:black;">Newsletter Feedback</h2>
+  <form action="/feedback" method="post">
+      <strong> <textarea class="feedback-textarea" placeholder="Enter your feedback here" name="feedback"></textarea></strong>
+    <input type="submit" value="Submit" class="submit-button">
+  </form>
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="signout">
+<form>
+    <button class="bb" formaction="/sign_out" style="color:black;background-color:red;">SIGN OUT</button></form>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

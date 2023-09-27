@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    .job{
+  display: none;
+}
+
+
+
+.wrapper{
+  background-image: url("{{ url_for('static', filename='form.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+}
+    .updation {
+  border: 1px solid black; /* Add a border around the box */
+  padding: 10px; /* Add some padding inside the box */
+  width: auto; /* Set the width of the box */
+  height:auto;
+}
+
+    body{
+        background-image: url("{{ url_for('static', filename='form.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+			 }
+    .admin_image{
+
+    text-align:center;
+    }
+
+    .adminbutton{
+    text-align:center;
+    }
+    .admin-button {
+    text-align:center;
+  background-color: black; /* Set your desired background color */
+  color: white; /* Set your desired text color */
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+}
+
+.admin-button:hover {
+  background-color: #1976d2; /* Set the hover background color */
+}
+
+
+ .form-box {
+        background-image: url("{{ url_for('static', filename='form.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+  border: 1px solid yellow; /* add a border */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* add a box shadow */
+  padding: 20px; /* add some padding */
+  margin: 20px; /* add some margin */
+}
+
+form {
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  display: flex; /* display the form as a flex container */
+  flex-direction: column; /* align the form elements in a column */
+}
+
+label {
+color:red;
+  font-weight: bold; /* make the labels bold */
+  margin-bottom: 10px; /* add some margin */
+}
+
+input[type="text"], input[type="number"], textarea {
+color:white;
+background-color:black;
+  padding: 10px; /* add some padding */
+  border: 1px solid yellow; /* add a border */
+  border-radius: 5px; /* add some rounded corners */
+  margin-bottom: 20px; /* add some margin */
+}
+
+#sub {
+width:auto;
+  background-color: black; /* set the background color */
+  color: white; /* set the text color */
+  border: none; /* remove the border */
+  padding: 10px 20px; /* add some padding */
+  margin-top: 10px; /* add some margin */
+  cursor: pointer; /* set the cursor to a pointer */
+  border-radius: 5px; /* add some rounded corners */
+  transition: background-color 0.3s ease; /* add a transition effect */
+}
+
+input[type="submit"]:hover {
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  background-color: black; /* change the background color on hover */
+}
+
+
+    </style>
+
+    <script>
+        function createSteps() {
+                          var n = document.getElementById("steps").value;
+                          var c = document.getElementById("xxx");
+                          c.innerHTML = ""; // clear any existing text boxes
+
+                          for (var i = 1; i <= n; i++) {
+                            var inputName = 'step-' + i;
+                            var label = document.createElement("label");
+                            label.setAttribute("for", "step" + i);
+                            label.textContent = "Review " + i + ": ";
+
+                            var input = document.createElement("input");
+                            input.name=inputName
+                            input.setAttribute("type", "text");
+                            input.setAttribute("id", "step" + i);
+
+                            c.appendChild(label);
+                            c.appendChild(input);
+                            c.appendChild(document.createElement("br"));
+  }
+}
+
+function createProd() {
+                          var n = document.getElementById("num-prod").value;
+                          var c = document.getElementById("prod-container");
+                          c.innerHTML = ""; // clear any existing text boxes
+
+                          for (var i = 1; i <= n; i++) {
+                            var inputName = 'Prod-' + i;
+                            var label = document.createElement("label");
+                            label.setAttribute("for", "prod" + i);
+                            label.textContent = "Product " + i + ": ";
+
+                            var input = document.createElement("input");
+                            input.name=inputName
+                            input.setAttribute("type", "text");
+                            input.setAttribute("id", "prod" + i);
+
+                            c.appendChild(label);
+                            c.appendChild(input);
+                            c.appendChild(document.createElement("br"));
+  }
+}
+
+function createBlogs() {
+                          var n = document.getElementById("num-blogs").value;
+                          var c = document.getElementById("blog-container");
+                          c.innerHTML = ""; // clear any existing text boxes
+
+                          for (var i = 1; i <= n; i++) {
+                            var inputName = 'Blog-' + i;
+                            var label = document.createElement("label");
+                            label.setAttribute("for", "blog" + i);
+                            label.textContent = "Blogs/Podcast " + i + ": ";
+
+                            var input = document.createElement("input");
+                            input.name=inputName
+                            input.setAttribute("type", "text");
+                            input.setAttribute("id", "blog" + i);
+
+                            c.appendChild(label);
+                            c.appendChild(input);
+                            c.appendChild(document.createElement("br"));
+  }
+}
+
+
+
+    </script>
+</head>
+<body>
+<div class="admin_image">
+
+
+    <img src="static/admin.jpg" width="150px" height="150px"></div><br>
+<div class="adminbutton">
+    <button class="admin-button">ADMIN DASHBOARD</button></div>
+
+
+<div class="wrapper">
+<div class="form-box">
+  <form action="/newsletter_details" method="POST" id="myForm" >
+
+    <label for="name" style="color:white;font-size:20px; ">Top performer</label>
+    <input type="text" id="name" name="top_performer"><br>
+
+      <div class="updation">
+
+          <input type="radio" name="option" value="add" id="addRadio">
+  <label for="addRadio" style="font-size:20px; color:white;">Add Jobs</label>
+  <input type="radio" name="option" value="delete" id="deleteRadio">
+  <label for="deleteRadio" style="font-size:20px; color:white;">Delete Jobs</label><br><br><br>
+
+
+          <div id="delete_job" class="job">
+
+<label style="font-size:20px;">Delete existing job openings</label><br><br>
+          {% for job in job_openings %}
+
+              <input type="checkbox" name="deleted_job" value="{{job}}"><span style="color:red;">{{job}}</span><br><br>
+    {% endfor %}
+          </div>
+
+<div id="add_job" class="job">
+
+    <label for="num-inputs">Number of job openings:</label>
+<input type="number" name="no_job" id="num-jobs" min="1" max="10" oninput="createInputs()">
+
+<div id="input-container" name="jobs">
+</div><br>
+</div>
+
+
+
+          <input type="radio" name="option" value="add" id="addreview">
+  <label for="addRadio" style="font-size:20px; color:white;">Add Reviews</label>
+  <input type="radio" name="option" value="delete" id="deletereview">
+  <label for="deleteRadio" style="font-size:20px; color:white;">Delete Reviews</label><br><br><br>
+
+
+
+  <div id="add_review" class="review" style="display:none;">
+
+      <label for="steps">Number of reviews to be added:</label>
+<input type="number" name='no_reviews' id="steps" min="1" max="10" oninput="createSteps()">
+
+<div id="xxx" name="steps">
+</div>
+  </div>
+
+
+          <div id="delete_review" class="review" style="display:none;">
+
+<label style="font-size:20px;">Delete existing reviews</label><br><br>
+          {% for review in reviews %}
+
+<input type="checkbox" name="deleted_review" value="{{review}}"><span style="color:red;">{{review}}</span><br><br><br><br>
+    {% endfor %}
+          </div>
+
+
+<input type="radio" name="option" value="add" id="addprod">
+  <label for="addRadio" style="font-size:20px; color:white;">Add Products</label>
+  <input type="radio" name="option" value="delete" id="deleteprod">
+  <label for="deleteRadio" style="font-size:20px; color:white;">Delete Products</label><br><br><br>
+
+ <div id="add_prod" class="prod" style="display:none;">
+
+    <label for="num-inputs">Number of new products developed</label>
+<input type="number" name="no_prod" id="num-prod" min="1" max="10" oninput="createProd()">
+
+<div id="prod-container" name="prod">
+
+</div>
+
+
+      <br>
+ </div>
+
+
+          <div id="delete_prod" class="prod" style="display:none;">
+
+<label style="font-size:20px;">Delete existing products</label><br><br>
+          {% for prod in new_products %}
+
+<input type="checkbox" name="deleted_prod" value="{{prod}}"><span style="color:red;">{{prod}}</span><br><br>
+    {% endfor %}
+          </div>
+
+
+
+
+
+
+<input type="radio" name="option" value="add" id="addblog">
+  <label for="addRadio" style="font-size:20px; color:white;">Add Blogs</label>
+  <input type="radio" name="option" value="delete" id="deleteblog">
+  <label for="deleteRadio" style="font-size:20px; color:white;">Delete Blogs</label><br><br><br>
+
+<div id="add_blog" class="blog" style="display:none;">
+    <label for="num-inputs">Number of blogs/podcasts</label>
+<input type="number" name="no_blog" id="num-blogs" min="1" max="10" oninput="createBlogs()">
+
+<div id="blog-container" name="blogs">
+  <!-- text boxes will be added here -->
+
+</div>
+      </div>
+      <br>
+
+
+
+      <div id="delete_blog" class="blog" style="display:none;">
+
+<label style="font-size:20px;">Delete existing blogs</label><br><br>
+          {% for blog in blogs %}
+
+<input type="checkbox" name="deleted_blog" value="{{blog}}"><span style="color:red;">{{blog}}</span><br><br>
+    {% endfor %}
+          </div>
+      </div><br><br>
+
+<label for="name" style="color:white;font-size:20px;">Message from manager</label>
+    <input type="text" id="message_manager" name="message_manager"><br>
+
+
+      <label for="name" style="color:white;font-size:20px;">About company</label>
+    <input type="text" id="about_company" name="about_company"><br>
+
+      <label for="name" style="color:white;font-size:20px;">Top performing team</label>
+    <input type="text" id="best_team" name="best_team"><br>
+    <br><br><br>
+    <button type="submit" id="sub" name="newproj">Submit</button>
+  </form>
+</div>
+
+
+
+</div>
+
+<script>
+
+
+const option1Radio = document.getElementById('deleteRadio');
+const option2Radio = document.getElementById('addRadio');
+const div1 = document.getElementById('delete_job');
+const div2 = document.getElementById('add_job');
+
+option1Radio.addEventListener('click', function() {
+  div1.style.display = 'block';
+  div2.style.display = 'none';
+});
+
+option2Radio.addEventListener('click', function() {
+  div1.style.display = 'none';
+  div2.style.display = 'block';
+});
+
+const rev1 = document.getElementById('deletereview');
+const rev2 = document.getElementById('addreview');
+const x = document.getElementById('delete_review');
+const y = document.getElementById('add_review');
+
+rev1.addEventListener('click', function() {
+  x.style.display = 'block';
+  y.style.display = 'none';
+});
+
+rev2.addEventListener('click', function() {
+  x.style.display = 'none';
+  y.style.display = 'block';
+});
+
+const prod1 = document.getElementById('deleteprod');
+const prod2 = document.getElementById('addprod');
+const p1 = document.getElementById('delete_prod');
+const p2 = document.getElementById('add_prod');
+
+prod1.addEventListener('click', function() {
+  p1.style.display = 'block';
+  p2.style.display = 'none';
+});
+
+prod2.addEventListener('click', function() {
+  p1.style.display = 'none';
+  p2.style.display = 'block';
+});
+
+
+const blog1 = document.getElementById('deleteblog');
+const blog2 = document.getElementById('addblog');
+const b1 = document.getElementById('delete_blog');
+const b2 = document.getElementById('add_blog');
+
+blog1.addEventListener('click', function() {
+  b1.style.display = 'block';
+  b2.style.display = 'none';
+});
+
+blog2.addEventListener('click', function() {
+  b1.style.display = 'none';
+  b2.style.display = 'block';
+});
+
+
+
+
+
+function createInputs() {
+
+  var numInputs = document.getElementById('num-jobs').value;
+  var inputContainer = document.getElementById('input-container');
+  inputContainer.innerHTML = ''; // clear any existing text boxes
+
+  for (var i = 1; i <= numInputs; i++) {
+    var inputName = 'input-' + i;
+    var label = document.createElement('label');
+    label.htmlFor = inputName;
+    label.textContent = 'Job ' + i + ':';
+
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.id = inputName;
+    input.name = inputName;
+
+    inputContainer.appendChild(label);
+    inputContainer.appendChild(input);
+    inputContainer.appendChild(document.createElement('br'));
+
+  }
+
+
+}
+
+</script>
+</body>
+</html>
